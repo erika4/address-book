@@ -8,17 +8,19 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class AddressBookReader {
-    private String txtFileName = "C:\\Development\\personal\\address-book\\AddressBook";
+    private String path;
 
-    public AddressBookReader() {
+    public AddressBookReader(String path) {
 
+        this.path = path;
     }
 
-    public int Males() {
+
+    public int ContainsGenre(String genre) {
         List<String> list;
 
-        try (Stream<String> stream = Files.lines(Paths.get(txtFileName))) {
-            list = stream.filter(line -> line.contains("Male")).map(line -> {
+        try (Stream<String> stream = Files.lines(Paths.get(path))) {
+            list = stream.filter(line -> line.contains(genre)).map(line -> {
                 String[] str = line.split(",");
                 return str[1];
             }).collect(Collectors.toList());
