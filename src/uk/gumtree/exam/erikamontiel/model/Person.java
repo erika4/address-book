@@ -1,23 +1,28 @@
 package uk.gumtree.exam.erikamontiel.model;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
-
-import static java.time.temporal.ChronoUnit.YEARS;
 
 public class Person {
 
     private String name;
     private String genre;
     private LocalDate dob;
-    private long age;
+    private LocalDate today = LocalDate.now();
+    private int age;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
 
     public Person(String name, String genre, String dob) {
         this.name = name;
         this.genre = genre;
         this.dob = LocalDate.parse(dob, formatter);
-        this.age = YEARS.between(this.dob, LocalDate.now());
+        calculateAge();
+    }
+
+    private void calculateAge() {
+        Period diff = Period.between(dob, today);
+        age = diff.getYears();
     }
 
     public String getName() {
@@ -44,7 +49,7 @@ public class Person {
         this.dob = dob;
     }
 
-    public long getAge() {
+    public int getAge() {
         return age;
     }
 }

@@ -16,19 +16,18 @@ public class AddressBookReader {
     public AddressBookReader(String path) {
 
         this.path = path;
+        read();
     }
 
     public int ContainsGenre(String genre) {
-        int total = 0;
-        read();
 
-        for (Person p : addressBook
-        ) {
-            if (p.getGenre().equals(genre)) {
-                total++;
-            }
-        }
-        return total;
+        return addressBook.stream().filter(person -> person.getGenre().equals(genre)).collect(Collectors.toList()).size();
+    }
+
+    public String Oldest() {
+        addressBook.sort((p1, p2) -> p2.getAge() - p1.getAge());
+
+        return addressBook.get(0).getName();
     }
 
 

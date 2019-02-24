@@ -15,6 +15,7 @@ public class AddressBookMain {
 
         bookReader = new AddressBookReader(args[0] + "\\" + args[1]);
         System.out.println("Males :" + bookReader.ContainsGenre("Male"));
+        System.out.println("Older :" + bookReader.Oldest());
     }
 
     private static void usage() {
