@@ -9,6 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AddressBookMainTest {
 
+    private String somelocation = "C:\\Development\\personal\\address-book";
+    private String somefile = "AddressBook";
+
     @Test
     void ShouldReturnUsageWhenNoArguments() {
 
@@ -42,7 +45,7 @@ class AddressBookMainTest {
 
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setErr(new PrintStream(output));
-        AddressBookMain.main(new String[]{"a", "b"});
+        AddressBookMain.main(new String[]{somelocation, somefile});
 
         assertEquals(expectedError, output.toString());
     }

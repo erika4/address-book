@@ -8,9 +8,13 @@ public class AddressBookMain {
 
     public static void main(String[] args) {
 
+        if (args.length == 0 || args.length > 2) {
+            usage();
+            return;
+        }
 
         bookReader = new AddressBookReader(args[0] + "\\" + args[1]);
-        System.out.println("Males :" + bookReader.ContainsGenre("Males"));
+        System.out.println("Males :" + bookReader.ContainsGenre("Male"));
     }
 
     private static void usage() {

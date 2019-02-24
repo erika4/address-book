@@ -1,5 +1,7 @@
 package uk.gumtree.exam.erikamontiel.service;
 
+import uk.gumtree.exam.erikamontiel.model.Person;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -9,28 +11,36 @@ import java.util.stream.Stream;
 
 public class AddressBookReader {
     private String path;
+    private List<Person> addressBook;
 
     public AddressBookReader(String path) {
 
         this.path = path;
     }
 
-
     public int ContainsGenre(String genre) {
-        List<String> list;
+        int total = 0;
+        read();
 
+        for (Person p : addressBook
+        ) {
+            if (p.getGenre().equals(genre)) {
+                total++;
+            }
+        }
+        return total;
+    }
+
+
+    private void read() {
         try (Stream<String> stream = Files.lines(Paths.get(path))) {
-            list = stream.filter(line -> line.contains(genre)).map(line -> {
+            addressBook = stream.map(line -> {
                 String[] str = line.split(",");
-                return str[1];
+                return new Person(str[0].trim(), str[1].trim(), str[2].trim());
             }).collect(Collectors.toList());
 
-            return list.size();
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-
-        return 0;
     }
-
 }
