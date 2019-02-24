@@ -7,17 +7,14 @@ import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AddressBookMainTest {
+class AddressBookMainTest {
 
     @Test
-    public void ShouldReturnUsageWhenNoArguments() {
+    void ShouldReturnUsageWhenNoArguments() {
 
-        StringBuffer sb = new StringBuffer();
-        sb.append(("Usage: String1 String2"))
-                .append("Where: String1 - AddressBook location")
-                .append("String 2 - AddressBook name file");
-
-        String expectedError = sb.toString();
+        String expectedError = "Usage: String1 String2\r\n" +
+                "Where: String1 - AddressBook location\r\n" +
+                "String2 - AddressBook name file\r\n";
 
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setErr(new PrintStream(output));
