@@ -22,4 +22,28 @@ class AddressBookMainTest {
 
         assertEquals(expectedError, output.toString());
     }
+
+    @Test
+    void ShouldReturnUsageWhenMoreThan2Arguments() {
+        String expectedError = "Usage: String1 String2\r\n" +
+                "Where: String1 - AddressBook location\r\n" +
+                "String2 - AddressBook name file\r\n";
+
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        System.setErr(new PrintStream(output));
+        AddressBookMain.main(new String[]{"a", "b", "c"});
+
+        assertEquals(expectedError, output.toString());
+    }
+
+    @Test
+    void ShouldRunWith2Arguments() {
+        String expectedError = "";
+
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        System.setErr(new PrintStream(output));
+        AddressBookMain.main(new String[]{"a", "b"});
+
+        assertEquals(expectedError, output.toString());
+    }
 }
