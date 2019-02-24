@@ -1,14 +1,16 @@
 package uk.gumtree.exam.erikamontiel;
 
+import uk.gumtree.exam.erikamontiel.service.AddressBookReader;
+
 public class AddressBookMain {
 
+    private static AddressBookReader bookReader;
 
     public static void main(String[] args) {
-        if (args.length == 0 || args.length > 2) {
-            usage();
-        }
 
 
+        bookReader = new AddressBookReader();
+        System.out.println("Males :" + bookReader.Males());
     }
 
     private static void usage() {
