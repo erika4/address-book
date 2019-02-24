@@ -14,8 +14,9 @@ public class AddressBookMain {
         }
 
         bookReader = new AddressBookReader(args[0] + "\\" + args[1]);
-        System.out.println("Males :" + bookReader.ContainsGenre("Male"));
-        System.out.println("Older :" + bookReader.Oldest());
+        System.out.println("Males: " + bookReader.ContainsGenre("Male"));
+        System.out.println("Older: " + bookReader.Oldest());
+        System.out.println("Day Older is Bill than Paul: " + bookReader.DaysOlderBetweenPerson("Bill McKnight", "Paul Robinson"));
     }
 
     private static void usage() {

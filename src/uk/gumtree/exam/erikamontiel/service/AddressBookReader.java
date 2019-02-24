@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.time.temporal.ChronoUnit.DAYS;
+
 public class AddressBookReader {
     private String path;
     private List<Person> addressBook;
@@ -28,6 +30,17 @@ public class AddressBookReader {
         addressBook.sort((p1, p2) -> p2.getAge() - p1.getAge());
 
         return addressBook.get(0).getName();
+    }
+
+    public long DaysOlderBetweenPerson(String person1, String person2) {
+        Person person_a = addressBook.stream().filter(person -> person.getName().equals(person1)).findAny().orElse(null);
+        Person person_b = addressBook.stream().filter(person -> person.getName().equals(person2)).findAny().orElse(null);
+
+        if (person_a != null && person_b != null) {
+            return DAYS.between(person_a.getDob(), person_b.getDob());
+        }
+
+        return 0;
     }
 
 
